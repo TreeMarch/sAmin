@@ -45,7 +45,7 @@ class OrderResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Select::make('user_id')
+            Forms\Components\Select::make('customer_id')
                 ->relationship('user', 'name')
                 ->label('Khách hàng')
                 ->required(),
@@ -91,7 +91,7 @@ class OrderResource extends Resource
                     ->summarize([
                         Sum::make()->label('Tổng tiền (VND)'),
                     ]),
-                Tables\Columns\TextColumn::make('user.name')->label('Khách hàng'),
+                Tables\Columns\TextColumn::make('customer.name')->label('Khách hàng')->badge(),
                 Tables\Columns\SelectColumn::make('status')
                     ->options([
                         'pending' => 'Pending',

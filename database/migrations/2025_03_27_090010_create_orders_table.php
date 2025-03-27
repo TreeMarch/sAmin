@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Liên kết với users
-            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Liên kết với products
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade'); // Liên kết với bảng customers
+            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Liên kết với bảng products
             $table->integer('quantity'); // Số lượng sản phẩm
             $table->decimal('total_price', 10, 2); // Tổng tiền
             $table->string('status')->default('pending'); // Trạng thái đơn hàng

@@ -40,7 +40,7 @@ class Product extends Model
 
     protected $casts = [
         'status' => ProductStatus::class,
-        'isActive' => 'boolean',// Chuyển đổi trường isActive thành boolean
+        'isActive' => 'boolean', // Chuyển đổi trường isActive thành boolean
         'image' => 'json'
     ];
 
@@ -58,6 +58,8 @@ class Product extends Model
     {
         return $query->where('status', 'archived');
     }
+    
+
 
     protected static function booted(): void
     {
@@ -74,7 +76,5 @@ class Product extends Model
 
             Storage::delete(array_map(fn($image) => "public/$image", $imagesToDelete));
         });
-
     }
-
 }
