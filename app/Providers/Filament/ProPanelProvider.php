@@ -38,7 +38,7 @@ class ProPanelProvider extends PanelProvider
             ->spa(true)
             ->topNavigation((bool)request()->cookie('topNavigation'))
             ->brandName("System Admin")
-            ->brandLogo(asset('/img/admin.png'))
+            ->brandLogo(asset('/img/mitu.png'))
             ->favicon(asset('/favicon.ico'))
             ->brandLogoHeight('5rem')
             ->unsavedChangesAlerts()
@@ -92,6 +92,7 @@ class ProPanelProvider extends PanelProvider
             ->plugins([
                 FilamentShieldPlugin::make(),
             ])
+            ->databaseNotifications()
             ->authMiddleware([
                 Authenticate::class,
             ]);

@@ -28,6 +28,16 @@ class UserResource extends Resource
 
     protected static ?string $navigationGroup = '';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return User::query()->count();
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return static::getNavigationBadge() > 5 ? 'success' : 'primary';
+    }
+
     public static function form(Form $form): Form
     {
         $rows = [

@@ -13,9 +13,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Product;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements FilamentUser, HasTenants
-    //, MustVerifyEmail
+//, MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -29,7 +31,7 @@ class User extends Authenticatable implements FilamentUser, HasTenants
         'password',
         'remember_token',
     ];
-    protected $guarded=false;
+    protected $guarded = false;
 
     /**
      * @var array<string, string>
@@ -37,6 +39,11 @@ class User extends Authenticatable implements FilamentUser, HasTenants
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {
@@ -53,4 +60,6 @@ class User extends Authenticatable implements FilamentUser, HasTenants
     {
         return Team::all();
     }
+
+
 }
